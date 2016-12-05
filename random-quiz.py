@@ -19,7 +19,7 @@ for line in open('state_capitals.csv'):
 if not os.path.exists('quizzes'):
     os.mkdir('quizzes')
 
-answer_letters = {0:'a', 1:'b', 2:'c', 3:'d'}
+answer_letters = {0:'A', 1:'B', 2:'C', 3:'D'}
 
 for quiz_num in range(1,36):
     quiz_name = 'quizzes/quiz-%d.txt' % quiz_num
@@ -29,6 +29,10 @@ for quiz_num in range(1,36):
             states = list(state_capitals.keys())
             capitals = list(state_capitals.values())
             random.shuffle(states)
+            quiz_file.write("Name:\n")
+            quiz_file.write("Date:\n")
+            quiz_file.write("Period:\n")
+            quiz_file.write("\n\n\tState Capital Quiz (version %d)\n\n\n" % quiz_num)
             for i, state in enumerate(states):
                 # pick three other answers
                 answers = []
@@ -39,6 +43,6 @@ for quiz_num in range(1,36):
                         answers.append(choice)
                 random.shuffle(answers)
                 answer_letter = answer_letters[answers.index(state_capitals[state])]
-                quiz_file.write('%d. What is the capital of %s?\na. %s b. %s c. %s d. %s\n' % (i+1, state, answers[0],
+                quiz_file.write('%d. What is the capital of %s?\n\tA. %s\n\tB. %s\n\tC. %s\n\tD. %s\n\n' % (i+1, state, answers[0],
                                                                                                answers[1], answers[2], answers[3]))
                 answer_file.write('%d. %s %s\n' % (i+1, answer_letter, state_capitals[state]))
